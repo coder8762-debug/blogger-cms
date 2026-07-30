@@ -1,54 +1,211 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Awais Law Blog Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+<title>Awais Law Admin Dashboard</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    display:flex;
+    background:#f1f5f9;
+}
+
+
+.sidebar{
+    width:250px;
+    height:100vh;
+    background:#111827;
+    color:white;
+    padding:30px;
+}
+
+
+.sidebar h2{
+    margin-bottom:40px;
+}
+
+
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:15px 0;
+}
+
+
+.sidebar a:hover{
+    color:#38bdf8;
+}
+
+
+.sidebar button{
+    margin-top:50px;
+    width:100%;
+    padding:12px;
+    border:none;
+    background:#ef4444;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+
+.main{
+    flex:1;
+    padding:30px;
+}
+
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+
+.admin{
+    background:white;
+    padding:12px 20px;
+    border-radius:10px;
+}
+
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+    margin-top:40px;
+}
+
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+
+.card h2{
+    font-size:35px;
+    color:#2563eb;
+}
+
+
+.card p{
+    margin-top:10px;
+}
+
+
+.add{
+    cursor:pointer;
+}
+
+
+.add:hover{
+    transform:translateY(-5px);
+    transition:.3s;
+}
+
+
+</style>
+
 </head>
+
 
 <body>
 
-<div class="dashboard">
 
-    <h1>Admin Dashboard</h1>
+<div class="sidebar">
 
-    <div class="admin-info">
-        <p>Logged in as:</p>
-        <span id="adminEmail"></span>
-    </div>
+<h2>Awais Law</h2>
+
+<a href="dashboard.html">📊 Dashboard</a>
+<a href="add-blog.html">➕ Add Blog</a>
+<a href="manage-blog.html">📝 Manage Blogs</a>
 
 
-    <div class="cards">
-
-        <div class="card">
-            <h2 id="totalBlogs">0</h2>
-            <p>Total Blogs</p>
-        </div>
-
-        <div class="card">
-            <h2>+</h2>
-            <p>Add New Blog</p>
-        </div>
-
-        <div class="card">
-            <h2>📝</h2>
-            <p>Manage Blogs</p>
-        </div>
-
-    </div>
-
-<div class="card" onclick="window.location.href='add-blog.html'">
-    <h2>➕</h2>
-    <p>Add New Blog</p>
-</div>
-    <button id="logoutBtn">
-        Logout
-    </button>
+<button id="logoutBtn">
+Logout
+</button>
 
 
 </div>
+
+
+
+<div class="main">
+
+
+<div class="topbar">
+
+<h1>Admin Dashboard</h1>
+
+<div class="admin">
+👤 <span id="adminEmail"></span>
+</div>
+
+
+</div>
+
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<h2 id="totalBlogs">0</h2>
+
+<p>
+Total Blogs
+</p>
+
+</div>
+
+
+
+<div class="card add" onclick="location.href='add-blog.html'">
+
+<h2>➕</h2>
+
+<p>
+Add New Blog
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>📝</h2>
+
+<p>
+Manage Blogs
+</p>
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
 
 
 <script type="module" src="dashboard.js"></script>
+
 
 </body>
 </html>
