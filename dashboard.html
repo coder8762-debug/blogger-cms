@@ -1,1 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Awais Law Blog Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+<div class="dashboard">
+
+    <h1>Admin Dashboard</h1>
+
+    <div class="admin-info">
+        <p>Logged in as:</p>
+        <span id="adminEmail"></span>
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+            <h2 id="totalBlogs">0</h2>
+            <p>Total Blogs</p>
+        </div>
+
+        <div class="card">
+            <h2>+</h2>
+            <p>Add New Blog</p>
+        </div>
+
+        <div class="card">
+            <h2>📝</h2>
+            <p>Manage Blogs</p>
+        </div>
+
+    </div>
+
+
+    <button id="logoutBtn">
+        Logout
+    </button>
+
+
+</div>
+
+
+<script type="module" src="dashboard.js"></script>
+
+</body>
+</html>
