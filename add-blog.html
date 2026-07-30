@@ -1,38 +1,148 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <title>Add Blog</title>
+
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
+
+body{
+
+background:#f1f5f9;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+
+}
+
+
+
+.container{
+
+background:white;
+width:500px;
+padding:35px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+
+}
+
+
+h1{
+
+margin-bottom:25px;
+
+}
+
+
+input,textarea{
+
+width:100%;
+padding:14px;
+margin-bottom:15px;
+border:1px solid #ddd;
+border-radius:10px;
+
+}
+
+
+textarea{
+
+height:180px;
+resize:none;
+
+}
+
+
+button{
+
+width:100%;
+padding:15px;
+background:#2563eb;
+border:none;
+color:white;
+border-radius:10px;
+cursor:pointer;
+font-size:16px;
+
+}
+
+
+button:hover{
+
+background:#1d4ed8;
+
+}
+
+
+a{
+
+display:block;
+text-align:center;
+margin-top:20px;
+text-decoration:none;
+color:#2563eb;
+
+}
+
+
+</style>
+
+
 </head>
+
 
 <body>
 
 
-<h1>Add New Blog</h1>
+<div class="container">
+
+
+<h1>
+➕ Add New Blog
+</h1>
 
 
 <input id="title" placeholder="Blog Title">
 
-<br><br>
 
 <input id="slug" placeholder="Blog Slug">
 
-<br><br>
 
 <textarea id="content" placeholder="Blog Content"></textarea>
 
-<br><br>
 
 <input id="image" placeholder="Image URL">
 
-<br><br>
 
 <button id="saveBtn">
-Save Blog
+Publish Blog
 </button>
+
+
+<a href="dashboard.html">
+← Back Dashboard
+</a>
+
+
+</div>
+
 
 
 <script type="module" src="add-blog.js"></script>
 
 
 </body>
+
 </html>
