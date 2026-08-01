@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const category = document.getElementById("category").value;
         const image = document.getElementById("image").value.trim();
         const description = document.getElementById("description").value.trim();
-        const content = document.getElementById("content").value.trim();
+       const content = editor.getData();
 
         message.style.color = "black";
         message.innerText = "Publishing...";
