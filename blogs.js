@@ -47,7 +47,13 @@ async function loadBlogs() {
 
 <td>
 
-<button class="view">View</button>
+<button
+class="view"
+onclick="location.href='blog-details.html?id=${blog.id}'">
+
+View
+
+</button>
 
 <button
 class="edit"
