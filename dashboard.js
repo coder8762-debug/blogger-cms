@@ -1,72 +1,33 @@
-import { supabase } from "./supabase.js";
+document.addEventListener("DOMContentLoaded", async () => {
 
+    // Check Login Session
+    const { data, error } = await window.db.auth.getSession();
 
-// Elements
-
-const adminEmail = document.getElementById("adminEmail");
-const logoutBtn = document.getElementById("logoutBtn");
-const totalBlogs = document.getElementById("totalBlogs");
-
-
-
-// Check User Login
-
-const { data } = await supabase.auth.getSession();
-
-
-if(!data.session){
-
-    window.location.href = "login.html";
-
-}
-else{
-
-    adminEmail.innerText = data.session.user.email;
-
-}
-
-
-
-// Get Total Blogs Count
-
-async function loadBlogCount(){
-
-
-    const { count, error } = await supabase
-    .from("blogs")
-    .select("*", { count:"exact", head:true });
-
-
-
-    if(error){
-
-        console.log(error.message);
-
-    }
-    else{
-
-        totalBlogs.innerText = count;
-
+    if (!data.session) {
+        window.location.href = "index.html";
+        return;
     }
 
+    // Show Logged-in Email
+    document.getElementById("adminEmail").innerText =
+        data.session.user.email;
 
-}
+    // Total Blogs
+    const { count } = await window.db
+        .from("blogs")
+        .select("*", { count: "exact", head: true });
 
+    document.getElementById("totalBlogs").innerText = count ?? 0;
 
-
-loadBlogCount();
-
-
+});
 
 
 // Logout
 
-logoutBtn.addEventListener("click", async()=>{
+document.getElementById("logoutBtn").addEventListener("click", async () => {
 
+    await window.db.auth.signOut();
 
-    await supabase.auth.signOut();
-
-    window.location.href="login.html";
-
+    window.location.href = "index.html";
 
 });
