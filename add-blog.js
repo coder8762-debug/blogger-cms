@@ -1,43 +1,58 @@
-import { supabase } from "./supabase.js";
+document.addEventListener("DOMContentLoaded", async () => {
 
+    // Check Login
+    const { data } = await window.db.auth.getSession();
 
-const saveBtn = document.getElementById("saveBtn");
+    if (!data.session) {
+        window.location.href = "index.html";
+        return;
+    }
 
+    const form = document.getElementById("blogForm");
+    const message = document.getElementById("message");
 
-saveBtn.addEventListener("click", async()=>{
+    form.addEventListener("submit", async (e) => {
 
+        e.preventDefault();
 
-const title = document.getElementById("title").value;
-const slug = document.getElementById("slug").value;
-const content = document.getElementById("content").value;
-const image = document.getElementById("image").value;
+        const title = document.getElementById("title").value.trim();
+        const slug = document.getElementById("slug").value.trim();
+        const author = document.getElementById("author").value.trim();
+        const category = document.getElementById("category").value;
+        const image = document.getElementById("image").value.trim();
+        const description = document.getElementById("description").value.trim();
+        const content = document.getElementById("content").value.trim();
 
+        message.style.color = "black";
+        message.innerText = "Publishing...";
 
+        const { error } = await window.db
+            .from("blogs")
+            .insert([
+                {
+                    title,
+                    slug,
+                    author,
+                    category,
+                    image,
+                    description,
+                    content
+                }
+            ]);
 
-const {error} = await supabase
-.from("blogs")
-.insert([
-{
-title:title,
-slug:slug,
-content:content,
-image_url:image
-}
-]);
+        if (error) {
+            console.error(error);
 
+            message.style.color = "red";
+            message.innerText = error.message;
+            return;
+        }
 
-if(error){
+        message.style.color = "green";
+        message.innerText = "Blog Published Successfully.";
 
-alert(error.message);
+        form.reset();
 
-}
-else{
-
-alert("Blog Saved Successfully!");
-
-window.location.href="dashboard.html";
-
-}
-
+    });
 
 });
