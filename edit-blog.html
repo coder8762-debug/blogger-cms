@@ -1,1 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Blog</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+<script src="edit-blog.js" defer></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6f9;
+}
+
+.container{
+width:90%;
+max-width:900px;
+margin:40px auto;
+background:#fff;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 15px rgba(0,0,0,.1);
+}
+
+h2{
+margin-bottom:25px;
+}
+
+label{
+display:block;
+margin-top:18px;
+margin-bottom:8px;
+font-weight:bold;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:15px;
+}
+
+textarea{
+height:220px;
+resize:vertical;
+}
+
+button{
+margin-top:25px;
+padding:14px 25px;
+border:none;
+background:#2563eb;
+color:white;
+font-size:16px;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+#message{
+margin-top:20px;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Edit Blog</h2>
+
+<form id="editForm">
+
+<label>Title</label>
+<input type="text" id="title" required>
+
+<label>Slug</label>
+<input type="text" id="slug" required>
+
+<label>Author</label>
+<input type="text" id="author" required>
+
+<label>Category</label>
+
+<select id="category">
+<option>General</option>
+<option>Legal News</option>
+<option>Family Law</option>
+<option>Criminal Law</option>
+<option>Corporate Law</option>
+</select>
+
+<label>Image URL</label>
+<input type="text" id="image">
+
+<label>Short Description</label>
+<textarea id="description" style="height:120px"></textarea>
+
+<label>Content</label>
+<textarea id="content"></textarea>
+
+<button type="submit">
+Update Blog
+</button>
+
+<div id="message"></div>
+
+</form>
+
+</div>
+
+</body>
+
+</html>
