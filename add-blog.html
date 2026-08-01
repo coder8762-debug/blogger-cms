@@ -19,74 +19,153 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
 }
 
 body{
-background:#f4f6f9;
+background:#f5f7fb;
+color:#1f2937;
 }
 
 .container{
-width:90%;
-max-width:900px;
-margin:40px auto;
-background:#fff;
-padding:30px;
-border-radius:10px;
-box-shadow:0 0 15px rgba(0,0,0,.1);
+width:95%;
+max-width:1200px;
+margin:35px auto;
 }
 
-h2{
+.page-title{
 margin-bottom:25px;
+}
+
+.page-title h1{
+font-size:30px;
+font-weight:700;
+color:#111827;
+}
+
+.page-title p{
+margin-top:6px;
+color:#6b7280;
+font-size:15px;
+}
+
+form{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:25px;
+}
+
+.card{
+background:#fff;
+border:1px solid #e5e7eb;
+border-radius:10px;
+padding:22px;
+}
+
+.card h3{
+margin-bottom:20px;
+font-size:20px;
+color:#111827;
+padding-bottom:10px;
+border-bottom:1px solid #eee;
+}
+
+.form-group{
+margin-bottom:18px;
 }
 
 label{
 display:block;
-margin-top:20px;
 margin-bottom:8px;
-font-weight:bold;
+font-size:14px;
+font-weight:600;
 }
 
-input,select,textarea{
-
+input,
+select,
+textarea{
 width:100%;
-padding:12px;
-border:1px solid #ccc;
-border-radius:6px;
+padding:12px 14px;
+border:1px solid #d1d5db;
+border-radius:8px;
 font-size:15px;
+outline:none;
+transition:.25s;
+}
 
+input:focus,
+select:focus,
+textarea:focus{
+border-color:#2563eb;
 }
 
 textarea{
-
-height:220px;
 resize:vertical;
+min-height:120px;
+}
 
+.content-editor textarea{
+min-height:420px;
 }
 
 button{
-
-margin-top:25px;
-padding:15px 25px;
+padding:14px 24px;
 border:none;
+border-radius:8px;
 background:#2563eb;
 color:#fff;
-font-size:16px;
-border-radius:6px;
+font-size:15px;
+font-weight:600;
 cursor:pointer;
-
+transition:.3s;
 }
 
 button:hover{
-
 background:#1d4ed8;
+}
 
+.sidebar .card{
+margin-bottom:20px;
+}
+
+.image-preview{
+width:100%;
+height:220px;
+border:2px dashed #d1d5db;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+color:#9ca3af;
+font-size:14px;
+overflow:hidden;
+margin-top:15px;
+}
+
+.image-preview img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:none;
+}
+
+.publish-btn{
+width:100%;
+margin-top:15px;
 }
 
 #message{
+margin-top:15px;
+font-weight:600;
+}
 
-margin-top:20px;
-font-weight:bold;
+@media(max-width:900px){
+
+form{
+
+grid-template-columns:1fr;
+
+}
 
 }
 
@@ -98,9 +177,23 @@ font-weight:bold;
 
 <div class="container">
 
-<h2>Add New Blog</h2>
+<div class="page-title">
+
+<h1>Add New Blog</h1>
+
+<p>Create and publish a new article.</p>
+
+</div>
 
 <form id="blogForm">
+
+<div>
+
+<div class="card">
+
+<h3>Basic Information</h3>
+
+<div class="form-group">
 
 <label>Blog Title</label>
 
@@ -109,6 +202,10 @@ type="text"
 id="title"
 required>
 
+</div>
+
+<div class="form-group">
+
 <label>Slug</label>
 
 <input
@@ -116,12 +213,20 @@ type="text"
 id="slug"
 required>
 
+</div>
+
+<div class="form-group">
+
 <label>Author</label>
 
 <input
 type="text"
 id="author"
 required>
+
+</div>
+
+<div class="form-group">
 
 <label>Category</label>
 
@@ -139,24 +244,170 @@ required>
 
 </select>
 
-<label>Featured Image URL</label>
+</div>
 
-<input
-type="text"
-id="image">
+<div class="form-group">
 
 <label>Short Description</label>
 
 <textarea
-id="description"
-style="height:120px"></textarea>
+id="description"></textarea>
 
-<label>Full Blog Content</label>
+</div>
+
+</div>
+
+<div class="card content-editor">
+  <div class="sidebar">
+
+<div class="card">
+
+<h3>Featured Image</h3>
+
+<div class="form-group">
+
+<label>Image URL</label>
+
+<input
+type="text"
+id="image"
+placeholder="https://example.com/image.jpg">
+
+</div>
+
+<div class="image-preview">
+
+<img id="previewImage">
+
+<span id="previewText">
+
+No Image Selected
+
+</span>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>SEO Settings</h3>
+
+<div class="form-group">
+
+<label>Meta Title</label>
+
+<input
+type="text"
+id="metaTitle"
+maxlength="60"
+placeholder="Max 60 characters">
+
+<small id="metaTitleCount">
+
+0 / 60
+
+</small>
+
+</div>
+
+<div class="form-group">
+
+<label>Meta Description</label>
 
 <textarea
-id="content"></textarea>
+id="metaDescription"
+maxlength="160"
+placeholder="Max 160 characters"></textarea>
 
-<button type="submit">
+<small id="metaDescCount">
+
+0 / 160
+
+</small>
+
+</div>
+
+<div class="form-group">
+
+<label>Focus Keyword</label>
+
+<input
+type="text"
+id="focusKeyword">
+
+</div>
+
+<div class="form-group">
+
+<label>Canonical URL</label>
+
+<input
+type="text"
+id="canonical">
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h3>Publishing</h3>
+
+<div class="form-group">
+
+<label>Status</label>
+
+<select id="status">
+
+<option value="Published">
+
+Published
+
+</option>
+
+<option value="Draft">
+
+Draft
+
+</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+<input
+type="checkbox"
+id="featured">
+
+ Featured Blog
+
+</label>
+
+</div>
+
+<div class="form-group">
+
+<label>
+
+<input
+type="checkbox"
+id="comments"
+checked>
+
+ Allow Comments
+
+</label>
+
+</div>
+
+<button
+type="submit"
+class="publish-btn">
 
 Publish Blog
 
@@ -164,10 +415,70 @@ Publish Blog
 
 <div id="message"></div>
 
+</div>
+
+</div>
+
 </form>
 
 </div>
 
+<h3>Blog Content</h3>
+
+<textarea id="content"></textarea>
+
+</div>
+
+</div>
+<script>
+
+const image=document.getElementById("image");
+
+const preview=document.getElementById("previewImage");
+
+const text=document.getElementById("previewText");
+
+image.addEventListener("input",()=>{
+
+if(image.value.trim()!=""){
+
+preview.src=image.value;
+
+preview.style.display="block";
+
+text.style.display="none";
+
+}else{
+
+preview.style.display="none";
+
+text.style.display="block";
+
+}
+
+});
+
+const metaTitle=document.getElementById("metaTitle");
+
+const metaDescription=document.getElementById("metaDescription");
+
+metaTitle.addEventListener("input",()=>{
+
+document.getElementById("metaTitleCount").innerText=
+
+metaTitle.value.length+" / 60";
+
+});
+
+metaDescription.addEventListener("input",()=>{
+
+document.getElementById("metaDescCount").innerText=
+
+metaDescription.value.length+" / 160";
+
+});
+
+</script>
 </body>
 
 </html>
