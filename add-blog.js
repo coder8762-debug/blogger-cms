@@ -1,4 +1,45 @@
 const imageFile=document.getElementById("imageFile");
+let editor;
+
+class SupabaseUploadAdapter{
+
+constructor(loader){
+
+this.loader=loader;
+
+}
+
+async upload(){
+
+const file=await this.loader.file;
+
+const fileName=Date.now()+"-"+file.name;
+
+const {error}=await window.db.storage
+.from("blog-images")
+.upload(fileName,file);
+
+if(error){
+
+throw error;
+
+}
+
+const {data}=window.db.storage
+.from("blog-images")
+.getPublicUrl(fileName);
+
+return{
+
+default:data.publicUrl
+
+};
+
+}
+
+abort(){}
+
+}
 
 imageFile.addEventListener("change",uploadFeaturedImage);
 
