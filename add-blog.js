@@ -81,6 +81,24 @@ document.getElementById("previewText").style.display="none";
 
 }
 document.addEventListener("DOMContentLoaded", async () => {
+    ClassicEditor
+.create(document.querySelector("#content"))
+.then(ed=>{
+
+editor=ed;
+
+editor.plugins.get("FileRepository").createUploadAdapter=(loader)=>{
+
+return new SupabaseUploadAdapter(loader);
+
+};
+
+})
+.catch(error=>{
+
+console.log(error);
+
+});
 
     // Check Login
     const { data } = await window.db.auth.getSession();
