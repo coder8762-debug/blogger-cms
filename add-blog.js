@@ -1,3 +1,44 @@
+const imageFile=document.getElementById("imageFile");
+
+imageFile.addEventListener("change",uploadFeaturedImage);
+
+async function uploadFeaturedImage(){
+
+const file=imageFile.files[0];
+
+if(!file) return;
+
+const fileName=Date.now()+"-"+file.name;
+
+const {error}=await window.db.storage
+
+.from("blog-images")
+
+.upload(fileName,file);
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+const {data}=window.db.storage
+
+.from("blog-images")
+
+.getPublicUrl(fileName);
+
+document.getElementById("image").value=data.publicUrl;
+
+document.getElementById("previewImage").src=data.publicUrl;
+
+document.getElementById("previewImage").style.display="block";
+
+document.getElementById("previewText").style.display="none";
+
+}
 document.addEventListener("DOMContentLoaded", async () => {
 
     // Check Login
